@@ -25,7 +25,9 @@
 
     // Input Js Event
     var inputEventJsFunctionName = '@Html.Raw(Model.InputEvent)';
-    if (inputEventJsFunctionName != null) {
+    console.log("Test:",inputEventJsFunctionName);
+
+    if (inputEventJsFunctionName.length>=1) {
 
         $("#" + id).on("input", function (event) {
 
@@ -38,7 +40,8 @@
 
     // Change Js Event
     var changeEventJsFunctionName = '@Html.Raw(Model.ChangeEvent)';
-    if (changeEventJsFunctionName != null) {
+
+    if (changeEventJsFunctionName.length>=1) {
         $("#" + id).on("change", function (event) {
 
             var element = $(this);
