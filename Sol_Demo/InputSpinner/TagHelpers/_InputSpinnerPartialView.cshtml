@@ -1,0 +1,49 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, CaptureRenderTagHelper
+
+@model InputSpinner.TagHelpers.InputSpinnerTagHelper
+
+<input id="@Model?.Id"
+       type="number"
+       class="@Model?.Class"
+       min="@Model?.Min"
+       max="@Model?.Max"
+       step="@Model?.Step" ,
+       data-decimals="@Model?.Decimals"
+       data-suffix="@Model?.Suffix"
+       data-prefix="@Model?.Prefix"
+       asp-for="@Model.For.Model"
+       name="@Model.For.Name" />
+
+<script type="text/javascript" capture="InputSpinnerJs" src="https://cdn.jsdelivr.net/npm/bootstrap-input-spinner@1.13.10/src/bootstrap-input-spinner.min.js"></script>
+
+<script type="text/javascript" capture="ImplementInputSpinnerJs">
+
+    var id = '@Html.Raw(Model?.Id)';
+
+    $("#" + id).inputSpinner();
+
+    // Input Js Event
+    var inputEventJsFunctionName = '@Html.Raw(Model.InputEvent)';
+    if (inputEventJsFunctionName != null) {
+
+        $("#" + id).on("input", function (event) {
+
+            var element = $(this);
+            var data = $(this).val();
+            window[inputEventJsFunctionName](element, data);
+
+        });
+    }
+
+    // Change Js Event
+    var changeEventJsFunctionName = '@Html.Raw(Model.ChangeEvent)';
+    if (changeEventJsFunctionName != null) {
+        $("#" + id).on("change", function (event) {
+
+            var element = $(this);
+            var data = $(this).val();
+            window[changeEventJsFunctionName](element, data);
+        })
+    }
+</script>

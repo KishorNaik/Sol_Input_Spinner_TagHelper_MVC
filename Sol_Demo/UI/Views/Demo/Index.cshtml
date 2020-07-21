@@ -1,0 +1,140 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model UI.Models.DemoModel
+
+<h1>Demo Input Spinner</h1>
+
+<form method="post" asp-route="submit">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Demo using Number</label>
+                    <jquery-input-spinner id="txtValue1"
+                                          class="form-control"
+                                          asp-for="Value1"
+                                          min="0"
+                                          max="100"
+                                          step="10">
+                    </jquery-input-spinner>
+                </div>
+            </div>
+            <div class="col-6">
+                <label>Value 1 : @Model.Value1</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Demo using Decimals Value</label>
+                    <jquery-input-spinner id="txtValue2"
+                                          class="form-control"
+                                          asp-for="Value2"
+                                          min="0"
+                                          max="9"
+                                          decimals="2"
+                                          step="0.1">
+                    </jquery-input-spinner>
+                </div>
+            </div>
+            <div class="col-6">
+                <label>Value 2 : @Model.Value2</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Demo using Prefix</label>
+                    <jquery-input-spinner id="txtValue3"
+                                          class="form-control"
+                                          asp-for="Value3"
+                                          min="0"
+                                          max="9"
+                                          decimals="2"
+                                          step="0.1"
+                                          prefix="₹">
+                    </jquery-input-spinner>
+                </div>
+            </div>
+            <div class="col-6">
+                <label>Value 3 : @Model.Value3</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Demo using  Suffix</label>
+                    <jquery-input-spinner id="txtValue4"
+                                          class="form-control"
+                                          asp-for="Value4"
+                                          min="-100"
+                                          max="100"
+                                          step="1"
+                                          suffix="°C">
+                    </jquery-input-spinner>
+                </div>
+            </div>
+            <div class="col-6">
+                <label>Value 4 : @Model.Value4</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Demo using  Javascript Event</label>
+                    <jquery-input-spinner id="txtValue5"
+                                          class="form-control"
+                                          asp-for="Value5"
+                                          min="-100"
+                                          max="100"
+                                          step="1"
+                                          suffix="°C"
+                                          input-js-event="onInputEvent"
+                                          change-js-event="onChangeEvent">
+                    </jquery-input-spinner>
+                </div>
+            </div>
+            <div class="col-6">
+                <label>Value 5 : @Model.Value5</label>
+                <p id="pInputValue"></p>
+                <p id="pChangeValue"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <input type="submit" class="btn btn-dark" value="Submit" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        function onInputEvent(element, data) {
+
+            console.log("element Object,", element);
+            console.log("element Object Value,", element.val());
+            console.log("element data", data);
+
+            $("#pInputValue").html("Input Value : " + data);
+        }
+
+        function onChangeEvent(element, data) {
+
+            console.log("element Object,", element);
+            console.log("element Object Value,", element.val());
+            console.log("element data", data);
+
+            $("#pChangeValue").html("Change Value : " + data);
+        }
+    </script>
+
+}

@@ -1,0 +1,51 @@
+Step 1: 
+Select Razor Class Libray Project Template and Checked Support Pages and Views
+
+Step 2:
+Create a TagHelpers folder. and add InputSpinnerTagHelper Tag Helper Class.
+
+Step 3:
+Install following nuget package from nuget server 
+Microsoft.AspNetCore.Razor.Runtime
+
+Step 4:
+Check code of InputSpinner Tag helper class.
+
+Step 5:
+Add following package from nuget package
+CaptureRenderTagHelper
+
+Step 6:
+Create _InputSpinner Partial View inside the Tag Helper Folder. Check _InputSpinnerPartialView
+
+
+Step 7:
+Create a MVC Application. application name should be like UI
+
+Step 7:
+Add a project referenace of InputSpinner in UI application.
+
+Step 8:
+go to _ViewImports.cshtml file and add the following Tag helper refereance
+@addTagHelper *, CaptureRenderTagHelper
+@addTagHelper *,InputSpinner
+
+Build the Solution.
+
+Step 9:
+go to _Layout.cshtml file.
+	
+	Add the following script inside the bottom of the end body tag.
+	<script render="InputSpinnerJs"></script>
+    <script render="ImplementInputSpinnerJs"></script>
+
+Build the solution.
+
+Step 10:
+Create a Demo Controller and View page.
+
+Step 11:
+Decorate Input Spinner on View Page. Check Index.html
+
+Step 12:
+Create a Model Class. Check DemoModel class
