@@ -16,7 +16,8 @@
                                           asp-for="Value1"
                                           min="0"
                                           max="100"
-                                          step="10">
+                                          step="10"
+                                          border-color="red">
                     </jquery-input-spinner>
                 </div>
             </div>
@@ -35,7 +36,8 @@
                                           min="0"
                                           max="9"
                                           decimals="2"
-                                          step="0.1">
+                                          step="0.1"
+                                          border-color="green">
                     </jquery-input-spinner>
                 </div>
             </div>
@@ -55,7 +57,9 @@
                                           max="9"
                                           decimals="2"
                                           step="0.1"
-                                          prefix="₹">
+                                          prefix="₹"
+                                          input-js-event="onInputEvent"
+                                          border-color="orange">
                     </jquery-input-spinner>
                 </div>
             </div>
@@ -74,7 +78,9 @@
                                           min="-100"
                                           max="100"
                                           step="1"
-                                          suffix="°C">
+                                          suffix="°C"
+                                          input-js-event="onInputEvent"
+                                          border-color="pink">
                     </jquery-input-spinner>
                 </div>
             </div>
@@ -95,14 +101,40 @@
                                           step="1"
                                           suffix="°C"
                                           input-js-event="onInputEvent"
-                                          change-js-event="onChangeEvent">
+                                          change-js-event="onChangeEvent"
+                                          border-color="blue">
                     </jquery-input-spinner>
                 </div>
             </div>
             <div class="col-6">
                 <label>Value 5 : @Model.Value5</label>
-                <p id="pInputValue"></p>
-                <p id="pChangeValue"></p>
+                <p id="pInputValue1"></p>
+                <p id="pChangeValue1"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Demo using  Javascript Event</label>
+                    <jquery-input-spinner id="txtValue6"
+                                          class="form-control"
+                                          asp-for="Value6"
+                                          min="0"
+                                          max="9"
+                                          decimals="2"
+                                          step="0.1"
+                                          prefix="₹"
+                                          input-js-event="onInputEvent"
+                                          change-js-event="onChangeEvent"
+                                          border-color="brown">
+                    </jquery-input-spinner>
+                </div>
+            </div>
+            <div class="col-6">
+                <label>Value 6 : @Model.Value6</label>
+                <p id="pInputValue2"></p>
+                <p id="pChangeValue2"></p>
             </div>
         </div>
 
@@ -118,22 +150,36 @@
 
     <script type="text/javascript">
 
-        function onInputEvent(element, data) {
+        function onInputEvent(sender, value) {
+            console.log("OnInput Event 1");
+            console.log("Sender:", sender);
+            console.log("Element Value:", value);
 
-            console.log("element Object,", element);
-            console.log("element Object Value,", element.val());
-            console.log("element data", data);
+            if (sender.id === "txtValue5") {
+                $("#pInputValue1").html(value);
+            }
 
-            $("#pInputValue").html("Input Value : " + data);
+            if (sender.id === "txtValue6") {
+
+                $("#pInputValue2").html(value);
+            }
+
         }
 
-        function onChangeEvent(element, data) {
+        function onChangeEvent(sender, value) {
+            console.log("onChange Event 2");
+            console.log("Sender:", sender);
+            console.log("Element Value:", value);
 
-            console.log("element Object,", element);
-            console.log("element Object Value,", element.val());
-            console.log("element data", data);
+            if (sender.id === "txtValue5") {
+                $("#pChangeValue1").html(value);
+            }
 
-            $("#pChangeValue").html("Change Value : " + data);
+            if (sender.id === "txtValue6") {
+
+                $("#pChangeValue2").html(value);
+            }
+
         }
     </script>
 

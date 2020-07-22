@@ -16,5 +16,7 @@ namespace UI.Models
         public double Value4 { get; set; }
 
         public int Value5 { get; set; }
+
+        public double Value6 { get; set; }
     }
 }

@@ -27,6 +27,7 @@ namespace InputSpinner.TagHelpers
         private const String PrefixAttributeName = "prefix";
         private const String InputEventAttributeName = "input-js-event";
         private const String ChangeEventAttributeName = "change-js-event";
+        private const String BorderColorAttributeName = "border-color";
 
         public InputSpinnerTagHelper(IHtmlHelper htmlHelper)
         {
@@ -65,6 +66,9 @@ namespace InputSpinner.TagHelpers
 
         [HtmlAttributeName(ChangeEventAttributeName)]
         public String ChangeEvent { get; set; }
+
+        [HtmlAttributeName(BorderColorAttributeName)]
+        public String BorderColor { get; set; }
 
         [HtmlAttributeNotBound]
         [ViewContext]

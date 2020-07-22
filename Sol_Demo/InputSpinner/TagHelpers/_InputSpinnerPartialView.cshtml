@@ -20,33 +20,58 @@
 <script type="text/javascript" capture="ImplementInputSpinnerJs">
 
     var id = '@Html.Raw(Model?.Id)';
+    var colorName = '@Html.Raw(Model?.BorderColor)';
 
     $("#" + id).inputSpinner();
 
-    // Input Js Event
-    var inputEventJsFunctionName = '@Html.Raw(Model.InputEvent)';
-    console.log("Test:",inputEventJsFunctionName);
+    var element = `#${id}`;
+    console.log(element);
 
-    if (inputEventJsFunctionName.length>=1) {
+    $(element).css("border-color", colorName);
 
-        $("#" + id).on("input", function (event) {
+        // Input Bubble Event
+        $(document).on('input', element, function (event) {
 
-            var element = $(this);
-            var data = $(this).val();
-            window[inputEventJsFunctionName](element, data);
+            //console.log(event.target);
+            //console.log(event.target.value);
+            //console.log(event.target.id);
 
+            if (event.target === this) {
+                //var value = $(event.target).val();
+                //console.log(value);
+
+                var inputEventName = '@Html.Raw(Model.InputEvent)';
+                //console.log(inputEventName);
+
+                if (inputEventName.length >= 1) {
+                    window[inputEventName](event.target, event.target.value);
+                }
+
+            }
+
+            event.stopPropagation();
         });
-    }
 
-    // Change Js Event
-    var changeEventJsFunctionName = '@Html.Raw(Model.ChangeEvent)';
+        // Change bubble Event
+        $(document).on('change', element, function (event) {
 
-    if (changeEventJsFunctionName.length>=1) {
-        $("#" + id).on("change", function (event) {
+            //console.log(event.target);
+            //console.log(event.target.value);
+            //console.log(event.target.id);
 
-            var element = $(this);
-            var data = $(this).val();
-            window[changeEventJsFunctionName](element, data);
-        })
-    }
+            if (event.target === this) {
+                //var value = $(event.target).val();
+                //console.log(value);
+
+                var changeEventName = '@Html.Raw(Model.ChangeEvent)';
+                //console.log(changeEventName);
+
+                if (changeEventName.length >= 1) {
+                    window[changeEventName](event.target, event.target.value);
+                }
+
+            }
+
+            event.stopPropagation();
+        });
 </script>
